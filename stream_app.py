@@ -5,7 +5,9 @@ import streamlit as st
 from PIL import Image
 
 
-st.write('Hello')
+st.title('The Plant Doctor: Diagnose your plants')
+st.subheader('Take a photograph with your camera...')
+st.subheader('...Or send an image fron your gallery to our model')
 
 
 # Load TFLite model and allocate tensors.
@@ -82,13 +84,37 @@ def get_class(img_path):
     i = np.argmax(output_data)
     return all_class[i]
 
-image = st.file_uploader('Enter Image')
+with st.sidebar:
+    medium = st.radio(
+                "Select Your image",
+                ("Using Camera","Using Gallery")
+            )
+
+if medium == "Using Gallery":
+    image = st.file_uploader('Enter Image')
+    if image != None:
+        display = Image.open(image)
+        st.image(display)
+
+if medium == "Using Camera":
+    image = st.camera_input('Capture image')
 
 if image != None:
     #print(image)
     display = Image.open(image)
-    st.image(display, caption = get_class(image))
+    #st.image(display)
+    image_class = get_class(image).split('___')
+    disease = image_class[1].strip('Tomato_').strip('Apple_')
+    desease = disease.replace('_',' ')
+    if disease == 'healthy':
+        statement = f'Great news! Your plant is healthy'
+    else:
+        statement = f'Uh oh....Your plant appears to have {disease}'
+    st.subheader(statement)
     #st.write(get_class(image))
+
+
+
 
 
 
