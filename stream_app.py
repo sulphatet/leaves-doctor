@@ -11,7 +11,7 @@ st.subheader('...Or send an image fron your gallery to our model')
 
 
 # Load TFLite model and allocate tensors.
-interpreter = tf.lite.Interpreter(model_path="model(1).tflite")
+interpreter = tf.lite.Interpreter(model_path="model(2).tflite")
 interpreter.allocate_tensors()
 
 # Get input and output tensors.
@@ -20,27 +20,23 @@ input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
 
 
-all_class = ['Bacterial Spots', 
-                 'Black Rot', 
-                 'Early Blight', 
-                 'Esca (Black_Measels)', 
-                 'Gray Leaf spot', 
-                 'Haunglongbing', 
-                 'Healthy', 
-                 'Late Blight', 
-                 'Leaf Mold', 
-                 'Leaf Scorch', 
-                 'Late Blight', 
-                 'Mosaic Virus', 
-                 'Northern Leaf Blight', 
-                 'Powdery Mildew', 
-                 'Rust', 
-                 'Scab', 
-                 'Septoria leaf spot', 
-                 'Spider Mite', 
-                 'Target Spot', 
-                 'Yellow Leaf Curl Virus']
-
+all_class =  ['Bacterial Spots',
+              'Black Rot',
+              'Esca (Black_Measels)',
+              'Gray Leaf Spots',
+              'Haunglongbing',
+              'Healthy',
+              'Leaf Blight',
+              'Leaf Mold',
+              'Leaf Scorch',
+              'Mosaic Virus',
+              'Powdery Mildew',
+              'Rust',
+              'Scab',
+              'Septoria Leaf Spots',
+              'Spider Mite',
+              'Target Spots',
+              'Yellow Leaf Curl Virus']
 
 def get_class(img_path):
     image_path = img_path
@@ -49,10 +45,6 @@ def get_class(img_path):
  
     img = open_cv_image[:,:,::-1].copy()
     img = cv2.resize(img,(224,224))
-
-    #img = Image.open(img_path)
-    #img = img.resize((224,224))
-
 
     input_shape = input_details[0]['shape']
     input_data = np.array(np.expand_dims(img,0),dtype = np.uint8)
@@ -81,7 +73,6 @@ if medium == "Using Camera":
     image = st.camera_input('Capture image')
 
 if image != None:
-    #print(image)
     display = Image.open(image)
     #st.image(display)
     image_class = get_class(image)
