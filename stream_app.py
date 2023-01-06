@@ -5,9 +5,9 @@ import streamlit as st
 from PIL import Image
 
 
-st.title('The Plant Doctor: Diagnose your plants')
-st.subheader('Take a photograph with your camera...')
-st.subheader('...Or send an image fron your gallery to our model')
+#st.title('The Plant Doctor: Diagnose your plants')
+#st.subheader('Take a photograph with your camera...')
+#st.subheader('...Or send an image fron your gallery to our model')
 
 
 # Load TFLite model and allocate tensors.
