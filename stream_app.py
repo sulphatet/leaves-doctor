@@ -11,7 +11,7 @@ st.subheader('...Or send an image fron your gallery to our model')
 
 
 # Load TFLite model and allocate tensors.
-interpreter = tf.lite.Interpreter(model_path="model.tflite")
+interpreter = tf.lite.Interpreter(model_path="model(1).tflite")
 interpreter.allocate_tensors()
 
 # Get input and output tensors.
@@ -20,45 +20,26 @@ input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
 
 
-all_class = ['Apple___Apple_scab',
- 'Apple___Black_rot',
- 'Apple___Cedar_apple_rust',
- 'Apple___healthy',
- 'Blueberry___healthy',
- 'Cherry_(including_sour)___Powdery_mildew',
- 'Cherry_(including_sour)___healthy',
- 'Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot',
- 'Corn_(maize)___Common_rust_',
- 'Corn_(maize)___Northern_Leaf_Blight',
- 'Corn_(maize)___healthy',
- 'Grape___Black_rot',
- 'Grape___Esca_(Black_Measles)',
- 'Grape___Leaf_blight_(Isariopsis_Leaf_Spot)',
- 'Grape___healthy',
- 'Orange___Haunglongbing_(Citrus_greening)',
- 'Peach___Bacterial_spot',
- 'Peach___healthy',
- 'Pepper,_bell___Bacterial_spot',
- 'Pepper,_bell___healthy',
- 'Potato___Early_blight',
- 'Potato___Late_blight',
- 'Potato___healthy',
- 'Raspberry___healthy',
- 'Soybean___healthy',
- 'Squash___Powdery_mildew',
- 'Strawberry___Leaf_scorch',
- 'Strawberry___healthy',
- 'Tomato___Bacterial_spot',
- 'Tomato___Early_blight',
- 'Tomato___Late_blight',
- 'Tomato___Leaf_Mold',
- 'Tomato___Septoria_leaf_spot',
- 'Tomato___Spider_mites Two-spotted_spider_mite',
- 'Tomato___Target_Spot',
- 'Tomato___Tomato_Yellow_Leaf_Curl_Virus',
- 'Tomato___Tomato_mosaic_virus',
- 'Tomato___healthy']
-
+all_class = ['Bacterial Spots', 
+                 'Black Rot', 
+                 'Early Blight', 
+                 'Esca (Black_Measels)', 
+                 'Gray Leaf spot', 
+                 'Haunglongbing', 
+                 'Healthy', 
+                 'Late Blight', 
+                 'Leaf Mold', 
+                 'Leaf Scorch', 
+                 'Late Blight', 
+                 'Mosaic Virus', 
+                 'Northern Leaf Blight', 
+                 'Powdery Mildew', 
+                 'Rust', 
+                 'Scab', 
+                 'Septoria leaf spot', 
+                 'Spider Mite', 
+                 'Target Spot', 
+                 'Yellow Leaf Curl Virus']
 
 
 def get_class(img_path):
@@ -103,25 +84,13 @@ if image != None:
     #print(image)
     display = Image.open(image)
     #st.image(display)
-    image_class = get_class(image).split('___')
-    disease = image_class[1].strip('Tomato_').strip('Apple_')
-    desease = disease.replace('_',' ')
-    if disease == 'healthy':
+    image_class = get_class(image)
+    disease = image_class
+    #desease = disease.replace('_',' ')
+    if disease == 'Healthy':
         statement = f'Great news! Your plant is healthy'
     else:
         statement = f'Uh oh....Your plant appears to have {disease}'
     st.subheader(statement)
     #st.write(get_class(image))
-
-
-
-
-
-
-
-
-
-
-
-
 
