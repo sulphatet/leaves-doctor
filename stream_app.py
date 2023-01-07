@@ -104,6 +104,6 @@ if image != None:
     st.subheader(statement)
     cure = all_links[disease]
     if cure is not None:
-        cure = f'To know more about {disease}, you can visit: {cure}'
+        cure = f'To know more about {disease} and how to treat it, you can visit: {cure}'
         st.markdown(cure)
     #st.write(get_class(image))
