@@ -38,6 +38,25 @@ all_class =  ['Bacterial Spots',
               'Target Spots',
               'Yellow Leaf Curl Virus']
 
+all_links =  {'Bacterial Spots' : 'https://www.gardeningknowhow.com/plant-problems/disease/bacterial-leaf-spot.htm',
+              'Black Rot' : 'https://www.gardeningknowhow.com/plant-problems/disease/black-rot-of-cole-crops.htm',
+              'Esca (Black_Measels)' : 'https://grapes.extension.org/grapevine-measles/',
+              'Gray Leaf Spots' : 'https://www.gardeningknowhow.com/plant-problems/disease/plant-leaf-spots.htm',
+              'Haunglongbing' : 'https://ucanr.edu/sites/Citrus@UCR/Huanglongbing/',
+              'Healthy' : None,
+              'Leaf Blight' : 'https://www.homequestionsanswered.com/what-is-leaf-blight.htm',
+              'Leaf Mold' : 'https://u.osu.edu/vegetablediseasefacts/tomato-diseases/high-tunnel-diseases/leaf-mold/',
+              'Leaf Scorch' : 'https://www.gardeningknowhow.com/ornamental/trees/tgen/bacterial-leaf-scorch-disease.htm',
+              'Mosaic Virus' : 'https://www.almanac.com/pest/mosaic-viruses',
+              'Powdery Mildew' : 'https://www.almanac.com/pest/powdery-mildew',
+              'Rust' : 'https://smartgardenguide.com/rust-spots-on-leaves/',
+              'Scab' : 'https://www.gardeningknowhow.com/edible/vegetables/vgen/scab-on-vegetables.htm',
+              'Septoria Leaf Spots' : 'https://www.gardeningknowhow.com/edible/fruits/berries/septoria-cane-leaf-spot-disease.htm',
+              'Spider Mite' : 'https://www.cannagardening.com/spider-mite-pests-diseases',
+              'Target Spots' : 'https://guide.utcrops.com/cotton/cotton-foliar-diseases/target-spot/',
+              'Yellow Leaf Curl Virus' : 'https://agriculture.vic.gov.au/biosecurity/plant-diseases/vegetable-diseases/tomato-yellow-leaf-curl-virus'
+             }
+
 def get_class(img_path):
     image_path = img_path
     img = Image.open(img_path).convert('RGB')
@@ -83,5 +102,8 @@ if image != None:
     else:
         statement = f'Uh oh....Your plant appears to have {disease}'
     st.subheader(statement)
+    cure = all_links[disease]
+    if cure is not None:
+        cure = f'To know more about {disease}, you can visit: {cure}'
+        st.markdown(cure)
     #st.write(get_class(image))
-
